@@ -188,23 +188,29 @@ args
 ```javascript
 b2upanel('refresh' [, data])
 ```
-Calling this method on a b2uPanel object will initiate an AJAX call to the target endpoint and method - if defined. It will 
+Calling this method on a b2uPanel object will initiate an AJAX call to the target endpoint and method - if defined. The second parameter, **data**, can be provided optionally either as an `object` array or a `JSON` string (using `JSON.stringify()`).
 ##
 ```javascript
 b2upanel('submit' , jQuery element)
 ```
+This method should be used to pass ***form-style*** data to the endpoint. It will set and call a `submit` method by default. ***form-style*** data includes both HTML `<input>` and `<select>` elements encapsulated inside a `<form>` or a simple `<div>`. The second parameter should be a valid jQuery element using the form element (i.e., `$("#form_id")`).
 ##
 ```javascript
 b2upanel('bind')
 ```
+Enable ["refresh"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) on `click` events. The b2uPanel must have mode type `"click"` set.
 ##
 ```javascript
 b2upanel('unbind')
 ```
+Disable ["refresh"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) on `click` events. The b2uPanel must have mode type `"click"` set.
 ##
 ```javascript
 b2upanel('abort')
 ```
+Interrupt an AJAX call initiated by the b2uPanel object via ["refresh"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) or ["submit"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods).
+
+***@note -*** _This method will ignore the interrupt options parameter._
 ##
 
 # Events

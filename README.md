@@ -303,9 +303,12 @@ public function redirect($url, $args = [], $options = [])
 @param **$options** - `Array` - Default `[]`, array of b2uPanel `options` to be modified. Not all options can be modified dynamically.
 
 Within the b2uFramework an application can redirect to a different endpoint using the `$this->Response->setHeader("Location", "some_url")`, which will preserve any b2uPanels loaded on the page. When an application wants to completely redirect off of a b2uPanel _Action_ they should call this function, since it will set the `document.location` in JavaScript and reload the page with the new URL content provdied.
+
+***@note -*** _The target URL page should setup the b2uPanel plugin once again if the application wants to continue to use b2uPanels in its script._
 ##
 ```PHP
 public function modifyRequest()
 ```
+Override of the `\B2U\Core\Action` member definition to modify the `POST` parameters into a user-friendly format that is usable within b2uFramework's `$this->Parameters` object. b2uFramework provides this function as an option for plugin developers to modify the data submitted to the framework via their plugins as needed. In the case of b2uPanel, the `POST` parameters are located in the `$this->Parameters` array under the `"_b2upanel_args"` attribute. This function has been implemented to allow users of the b2uPanel plugin and the `\B2uPanel\B2uPanelAction` helper _Action_ to easily access the parameters directly in the `$this->Parameters` array.
 
 [Top](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#b2upanel---a-jquery-plugin)

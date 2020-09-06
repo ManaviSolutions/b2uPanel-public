@@ -102,7 +102,7 @@ overlay / data-overlay
 ```
 init / data-init
 ```
-`bool` - _(Optional)_ Determine if the b2uPanel should load initial content.
+`bool` - _(Optional)_ - Determine if the b2uPanel should load initial content.
 
 * `false` - _(Default)_ - No action. Panel content will only be updated by calling `"refresh"` or `"submit"` methods.
 * `true` - Once the panel is created it will immediately call its `"refresh"` method.  
@@ -110,14 +110,18 @@ init / data-init
 ```
 effect / data-effect
 ```
-`string` - _(Optional)_ Determine how new content received from AJAX calls should be applied to the b2uPanel HTML element.
+`string` - _(Optional)_ - Determine how new content received from AJAX calls should be applied to the b2uPanel HTML element.
 
 * `"replace"` - _(Default)_ - New content will overwrite the current HTML content within the b2uPanel HTML element. This is the same as calling a jQuery `html()` with the new content.
-* `"append"` - New content will be appended to the the current HTML content within the b2uPanel HTML element. This is the same as calling a jQuery `append()` with the new content.
+* `"append"` - New content will be appended to the current HTML content within the b2uPanel HTML element. This is the same as calling a jQuery `append()` with the new content.
 ##
 ```
 interrupt / data-interrupt
 ```
+`bool` - _(Optional)_ - Allow the AJAX request to be interrupted.
+
+* `false` - _(Default)_ - Once an AJAX request is sent to the endpoint server it cannot be interrupted.
+* `true` - Allows the interruption of AJAX calls. Once an AJAX request is interrupted it will display a refresh icon in the overlay that can be clicked to call a new `"refresh"` method. 
 ##
 ```
 view / data-view

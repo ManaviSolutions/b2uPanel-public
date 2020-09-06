@@ -147,33 +147,48 @@ data-height
 ```
 `string` - _(Optional)_ - Set on the b2uPanel HTML element, this parameter will set the element's `min-height` attribute. The value set for this should be in valid style attribute format (i.e., `"60px"`, `"3em"`, etc.).
 
-***@noye -*** _Only available via data-height HTML attribute._
+***@note -*** _Only available via data-height HTML attribute._
 ##
 ```
 click
 ```
 `callback` - _(Optional)_ - The function to call when the b2uPanel element is clicked. This function will receive the `b2uPanel.Event` object.
+
+***@note -*** _Only available via options._
 ##
 ```
 error
 ```
 `callback` - _(Optional)_ - The function to call when the b2uPanel's AJAX execution fails, or the plugin has an internal error. This function will receive the `b2uPanel.Event` object.
+
+***@note -*** _Only available via options._
 ##
 ```
 success
 ```
 `callback` - _(Optional)_ - The function to call when the b2uPanel's AJAX execution succeeds. This function will receive the `b2uPanel.Event` object.
+
+***@note -*** _Only available via options._
 ##
 ```
 complete
 ```
 `callback` - _(Optional)_ - The function to call when the b2uPanel's AJAX execution completes regardless of AJAX success or error. This function will receive the `b2uPanel.Event` object.
+
+***@note -*** _Only available via options._
 ##
+```
+args
+```
+`object` - _(Optional)_ - Two-way object array used to pass additional parameters to the endpoint and receive parameters from the endpoint. The `options.args` field can be used to provide initializing data to the target endpoint, and it can also be used to receive data from the endpoint and process them on the JavaScript front.  
+
+***@note -*** _Only available via options._
 
 # Methods
 ```javascript
 b2upanel('refresh' [, data])
 ```
+Calling this method on a b2uPanel object will initiate an AJAX call to the target endpoint and method - if defined. It will 
 ##
 ```javascript
 b2upanel('submit' , jQuery element)
@@ -193,6 +208,10 @@ b2upanel('abort')
 ##
 
 # Events
+```
+b2uPanel.Event
+```
+##
 ```
 click.b2upanel
 ```

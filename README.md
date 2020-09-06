@@ -214,7 +214,7 @@ Interrupt an AJAX call initiated by the b2uPanel object via ["refresh"](https://
 ##
 
 # Events
-Suported events:
+The plugin suports a few events which redirect `$.ajax` the results to the application.
 |Event|Description|
 |:---:|:---|
 |`click.b2upanel`|Event triggered on b2uPanel `click` events if the `data-mode` or `options.mode` is set to `"click"`, regardless of `bind` status.|

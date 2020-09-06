@@ -214,9 +214,37 @@ Interrupt an AJAX call initiated by the b2uPanel object via ["refresh"](https://
 ##
 
 # Events
+A `b2uPanel.Event` object is returned to the calling JavaScript with all b2uPanel events. This `Event` object will have the following definition:
+```javascript
+b2uPanel.Event = {
+    system_error,                                           // provides details on plugin level errors
+    post: {                                                 // arguments that were posted to the endpoint
+        _b2upanel_args: {},                                     // parameters posted to the endpoint
+        _b2upanel_endpoint: "endpoint_url[/method]",            // actual endpoint called
+        _b2upanel_id: "my_panel",                               // element initiating the AJAX POST
+        _b2upanel_options: {                                    // state of the b2uPanel options at time of AJAX call
+            args: {},                                               // initialization parameters
+            bind: true,
+            effect: "replace",
+            endpoint: "endpoint_url",
+            init: false,
+            interrupt: false,
+            method: "show",
+            mode: "none",
+            overlay: true,
+            view: false
+        }
+    },               
+    response: {                                             // result of the last AJAX call to endpoint
+        args: {},                                               // merge of arguments passed in and returned by endpoint
+        content: "...",                                         // content sent back by endpoint
+        options: [],                                            // modified b2uPanel options - endpoint can modify options
+        status_code: 200,                                       // 200 on success else 500 on all other cases
+        status_message: "success"                               // "success" or error message for all other cases
+    }
+}
 ```
-b2uPanel.Event
-```
+
 ##
 ```
 click.b2upanel

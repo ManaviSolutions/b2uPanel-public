@@ -309,6 +309,6 @@ Within the b2uFramework an application can redirect to a different endpoint usin
 ```PHP
 public function modifyRequest()
 ```
-Override of the `\B2U\Core\Action` member definition to modify the `POST` parameters into a user-friendly format that is usable within b2uFramework's `$this->Parameters` object. b2uFramework provides this function as an option for plugin developers to modify the data submitted to the framework via their plugins as needed. In the case of b2uPanel, the `POST` parameters are located in the `$this->Parameters` array under the `"_b2upanel_args"` attribute. This function has been implemented to allow users of the b2uPanel plugin and the `\B2uPanel\B2uPanelAction` helper _Action_ to easily access the parameters directly in the `$this->Parameters` array.
+Override of the `\B2U\Core\Action` member definition to modify the `POST` parameters into a user-friendly format that is usable within b2uFramework's `$this->Parameters` object.  b2uFramework provides this function as an option for plugin developers to modify the data submitted to the framework via their plugins as needed. In the case of b2uPanel, the `POST` parameters are located in the `$this->Parameters` array under the `"_b2upanel_args"` attribute. This function has been implemented to allow users of the b2uPanel plugin and the `\B2uPanel\B2uPanelAction` helper _Action_ to easily access the parameters directly in the `$this->Parameters` array.
 
 [Top](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#b2upanel---a-jquery-plugin)

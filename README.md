@@ -279,7 +279,7 @@ The b2uPanel was designed independently from any framework, and it was designed 
 3. Any _Action_ that is set as a `data-endpoint` of a b2uPanel should derive from `\B2uPanel\B2uPanelAction`.
 4. `public function submit() {}` is a **required** _Method_ that must be defined in the _Action_ class. This function will receive the results of `b2upanel("submit", ...)` calls.
 
-## Utility Function
+## Utility Functions
 b2uPanels expect precise responses to be returned when a call to an endpoint is made. For example, the result must be a `JSON` with the parameters `status_code` and `content` properly defined. Furthermore, POST request sent from b2uPanels have a unique structure that contains parameters that may not be conducive to every application's use-case (e.g., `_b2upanel_args` for arguments sent via AJAX). The following methods are provided to simplify sending and receiving data between b2uPanel and an application built on b2uFramework.
 ##
 ```PHP
@@ -293,5 +293,19 @@ public function buildResponse($content, $args = [], $code = 200, $options = [])
 
 @param **$options** - `Array` - Default `[]`, array of b2uPanel `options` to be modified. Not all options can be modified dynamically.
 ##
+```PHP
+public function redirect($url, $args = [], $options = [])
+```
+@param **url** - `string` - URL to redirect to once AJAX call returns on success.
+
+@param **$args** - `Array` - Default `[]`, array to be sent back to JavaScript, and accessible through the `b2uPanel.Event`'s `response.args`.
+
+@param **$options** - `Array` - Default `[]`, array of b2uPanel `options` to be modified. Not all options can be modified dynamically.
+
+Within the b2uFramework an application can redirect to a different endpoint using the `$this->Response->setHeader("Location", "some_url")`, which will preserve any b2uPanels loaded on the page. When an application wants to completely redirect off of a b2uPanel _Action_ they should call this function, since it will set the `document.location` in JavaScript and reload the page with the new URL content provdied.
+##
+```PHP
+public function modifyRequest()
+```
 
 [Top](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#b2upanel---a-jquery-plugin)

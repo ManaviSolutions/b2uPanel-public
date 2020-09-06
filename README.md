@@ -72,7 +72,9 @@ endpoint / data-endpoint
 ```
 method / data-method
 ```
-`string` - _(Optional)_ The parameter is appended to the endpoint URL. Once this parameter is set, the endpoint URL is modified to `endpoint_url/method`, except on `"submit"` method calls where the endpoint will always be `endpoint_url/submit`. 
+`string` - _(Optional)_ The parameter is appended to the endpoint URL. 
+
+When this parameter is set, the endpoint URL is modified to `endpoint_url/method`, except on `"submit"` method calls where the endpoint will always be `endpoint_url/submit`. 
 ##
 ```
 mode / data-mode
@@ -136,26 +138,36 @@ This option can be used in conjunction with `overlay=false` to update a b2uPanel
 ```
 dest / data-dest
 ```
+`string` - _(Optional)_ - Set a different target HTML element to receive the results of the b2uPanel's AJAX call. 
+
+This can be useful when the results of a b2uPanel event should refresh an entire page or a different page section. It can be used to simulate buttons where the b2uPanel can act as the button element.
 ##
 ```
 data-height
 ```
+`string` - _(Optional)_ - Set on the b2uPanel HTML element, this parameter will set the element's `min-height` attribute. The value set for this should be in valid style attribute format (i.e., `"60px"`, `"3em"`, etc.).
+
+***@noye -*** _Only available via data-height HTML attribute._
 ##
 ```
 click
 ```
+`callback` - _(Optional)_ - The function to call when the b2uPanel element is clicked. This function will receive the `b2uPanel.Event` object.
 ##
 ```
 error
 ```
+`callback` - _(Optional)_ - The function to call when the b2uPanel's AJAX execution fails, or the plugin has an internal error. This function will receive the `b2uPanel.Event` object.
 ##
 ```
 success
 ```
+`callback` - _(Optional)_ - The function to call when the b2uPanel's AJAX execution succeeds. This function will receive the `b2uPanel.Event` object.
 ##
 ```
 complete
 ```
+`callback` - _(Optional)_ - The function to call when the b2uPanel's AJAX execution completes regardless of AJAX success or error. This function will receive the `b2uPanel.Event` object.
 ##
 
 # Methods

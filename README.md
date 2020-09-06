@@ -269,13 +269,14 @@ The b2uPanel was designed independent from any framework, and it was designed to
 1. Download a copy of the latest [b2uPanel-public](https://github.com/bob2u/b2uPanel-public), and copy the contents to a location within the website's directory.
 2. Modify ***index.php*** for the b2uFramework by adding the following to the `setup()` configuration under the global **Includes** section.
     ```PHP
-    \B2U\Core\Manager::instance()->setup([
-	"Includes" => [
-		"path_to_b2upanel_plugin/b2u.action.php"
-	],
-        ...
-    ]);
+	\B2U\Core\Manager::instance()->setup([
+		"Includes" => [
+			"path_to_b2upanel_plugin/b2u.action.php"
+		],
+	...
+	]);
     ```
-3. 
+3. Any _Action_ that are set as a `data-endpoint` of a b2uPanel should derive from `\B2uPanel\B2uPanelAction`.
+4. `public function submit() {}` is a **required** _Method_ that must be defined in the _Action_ class. This function will receive the results of `b2upanel("submit", ...)` calls.
 
 [Top](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#b2upanel---a-jquery-plugin)

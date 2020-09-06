@@ -221,6 +221,14 @@ Suported events:
 |`success.b2upanel`|Event triggered on b2uPanel AJAX success **AND** a _status\_code_ of 200 with valid _content_ returned from endpoint.|
 |`error.b2upanel`|Event triggered on b2uPanel AJAX error, _status\_code_ not equal to 200, or _content_ `undefined` returned from endpoint|
 |`complete.b2upanel`|Event triggered on **ALL** b2uPanel AJAX calls|
+
+Example capturing a `b2uPanel.Event`:
+```javascript
+$('#my_panel').on('success.b2upanel', function (e) {
+    console.log(e.post);
+    console.log(e.response);
+});
+```
 ##
 A `b2uPanel.Event` object is returned to the calling JavaScript with all b2uPanel events. This `Event` object will have the following definition:
 ```javascript

@@ -78,23 +78,26 @@ method / data-method
 mode / data-mode
 ```
 `string` - (Optional) Set the interactive mode of the b2uPanel element.
-    * `"none"` - Default - The b2uPanel has no interactive events.
-    * `"click"` - Clicking on the b2uPanel will fire a `click.b2upanel` event, and call `"refresh"` method if `bind` is set to `true`.
+
+* `"none"` - Default - The b2uPanel has no interactive events.
+* `"click"` - Clicking on the b2uPanel will fire a `click.b2upanel` event, and call `"refresh"` method if `bind` is set to `true`.
 ##
 ```
 bind / data-bind
 ```
 `bool` - (Optional) Determine how the b2uPanel reacts to clicking events.
-    * `true` - Default - Clicking on a b2uPanel element with its `mode` set to `"click"` will also call its `"refresh"` method 
-    * `false` - Clicking on a b2uPanel element with its `mode` set to `"click"` will **NOT** also call its `"refresh"` method 
+
+* `true` - Default - Clicking on a b2uPanel element with its `mode` set to `"click"` will also call its `"refresh"` method 
+* `false` - Clicking on a b2uPanel element with its `mode` set to `"click"` will **NOT** also call its `"refresh"` method 
 ##
 ```
 overlay / data-overlay
 ```
 `bool` or `string` - (Optional) Modify how the panel overlay functions. The plugin's default behavior is that an overlay is displayed with a loading .gif when the plugin makes an AJAX call. This overlay will also prevent further access to the b2uPanel element, which avoids additional `click`s when `mode` is set to `click`.
-    * `true` - Default - Display the b2uPanel overlay on top of the HTML element that defined the b2uPanel.
-    * `false` - Do not display the overlay when an AJAX call is made. This will prevent the user from receiving visual feedback that an AJAX request has been issued, and the application is waiting for a response. It is the developer's responsibility to manage the user experience.
-    * `HTML element's id` - If a valid HTML element `id` is provided, then the overlay will be created over the target element with the given `id`. This is useful in scenarios where an application wants to prevent other areas of a page or the parent section of a page that contains the panel to be inaccessible to the end-user until the AJAX call has returned. 
+
+* `true` - Default - Display the b2uPanel overlay on top of the HTML element that defined the b2uPanel.
+* `false` - Do not display the overlay when an AJAX call is made. This will prevent the user from receiving visual feedback that an AJAX request has been issued, and the application is waiting for a response. It is the developer's responsibility to manage the user experience.
+* `HTML element's id` - If a valid HTML element `id` is provided, then the overlay will be created over the target element with the given `id`. This is useful in scenarios where an application wants to prevent other areas of a page or the parent section of a page that contains the panel to be inaccessible to the end-user until the AJAX call has returned. 
 ##
 ```
 init / data-init

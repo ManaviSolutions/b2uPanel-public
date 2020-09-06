@@ -118,14 +118,20 @@ effect / data-effect
 ```
 interrupt / data-interrupt
 ```
-`bool` - _(Optional)_ - Allow the AJAX request to be interrupted.
+`bool` - _(Optional)_ - Allow an AJAX request to be interrupted.
 
 * `false` - _(Default)_ - Once an AJAX request is sent to the endpoint server it cannot be interrupted.
-* `true` - Allows the interruption of AJAX calls. Once an AJAX request is interrupted it will display a refresh icon in the overlay that can be clicked to call a new `"refresh"` method. 
+* `true` - Allows the interruption of an AJAX call. Once an AJAX request is interrupted it will display a refresh icon in the overlay that can be clicked to call a new `"refresh"` method. 
 ##
 ```
 view / data-view
 ```
+`bool` - _(Optional)_ - Toggle the visibility of the content inside the b2uPanel HTML element.
+
+* `false` - _(Default)_ - Hide the content when an AJAX call is issued, and only toggle back visibility after the new contet has been updated.
+* `true` - Do not hide the content when an AJAX call is issued. If `overlay` is `true` then the current content will be visible through the transparent overlay until the AJAX call completes, and updates the content.
+
+This option can be used in conjunction with `overlay=false` to update a b2uPanel's content without changing the visual state of HTML element (i.e., to not display the overlay, and the loading gif).  
 ##
 ```
 dest / data-dest

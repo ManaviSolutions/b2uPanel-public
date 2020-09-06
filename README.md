@@ -281,15 +281,15 @@ The b2uPanel was designed independently from any framework, and it was designed 
 
 ## Utility Function
 b2uPanels expect precise responses to be returned when a call to an endpoint is made. For example, the result must be a `JSON` with the parameters `status_code` and `content` properly defined. Furthermore, POST request sent from b2uPanels have a unique structure that contains parameters that may not be conducive to every application's use-case (e.g., `_b2upanel_args` for arguments sent via AJAX). The following methods are provided to simplify sending and receiving data between b2uPanel and an application built on b2uFramework.
-
+##
 ```PHP
 public function buildResponse($content, $args = [], $code = 200, $options = [])
 ```
 @param **$content** - `string` - Typically HTML content returned.
 
-@param **$args** - `Array` - Default `[]`, array of parameters to be sent back to JavaScript, and accessible through the `b2uPanel.Event`'s `response.args`.
+@param **$args** - `Array` - Default `[]`, array to be sent back to JavaScript, and accessible through the `b2uPanel.Event`'s `response.args`.
 
-@param **$code** - `int` - Default 200, if a value besides 200 is provided the content will not be processed and a `error.b2upanel` event will be triggered.
+@param **$code** - `int` - Default 200, the content will not be processed and a `error.b2upanel` event will be triggered if $code is not 200.
 
 @param **$options** - `Array` - Default `[]`, array of b2uPanel `options` to be modified. Not all options can be modified dynamically.
 ##

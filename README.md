@@ -235,4 +235,6 @@ success.b2upanel
 ```
 complete.b2upanel
 ```
-##
+
+
+[Top](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#b2upanel---a-jquery-plugin)

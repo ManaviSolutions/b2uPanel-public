@@ -74,7 +74,7 @@ method / data-method
 ```
 `string` - _(Optional)_ The parameter is appended to the endpoint URL. 
 
-When this parameter is set, the endpoint URL is modified to `endpoint_url/method`, except on [submit](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) method calls where the endpoint will always be `endpoint_url/submit`. 
+When this parameter is set, the endpoint URL is modified to `endpoint_url/method`, except on ["submit"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) method calls where the endpoint will always be `endpoint_url/submit`. 
 ##
 ```
 mode / data-mode
@@ -82,15 +82,15 @@ mode / data-mode
 `string` - _(Optional)_ Set the interactive mode of the b2uPanel element.
 
 * `"none"` - _(Default)_ - The b2uPanel has no interactive events.
-* `"click"` - Clicking on the b2uPanel will fire a `click.b2upanel` event, and call [refresh](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) method if `bind` is set to `true`.
+* `"click"` - Clicking on the b2uPanel will fire a `click.b2upanel` event, and call ["refresh"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) method if `bind` is set to `true`.
 ##
 ```
 bind / data-bind
 ```
 `bool` - _(Optional)_ Determine how the b2uPanel reacts to clicking events.
 
-* `true` - _(Default)_ - Clicking on a b2uPanel element with its `mode` set to `"click"` will also call its [refresh](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) method 
-* `false` - Clicking on a b2uPanel element with its `mode` set to `"click"` will **NOT** also call its [refresh](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) method 
+* `true` - _(Default)_ - Clicking on a b2uPanel element with its `mode` set to `"click"` will also call its ["refresh"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) method 
+* `false` - Clicking on a b2uPanel element with its `mode` set to `"click"` will **NOT** also call its ["refresh"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) method 
 ##
 ```
 overlay / data-overlay
@@ -106,8 +106,8 @@ init / data-init
 ```
 `bool` - _(Optional)_ - Determine if the b2uPanel should load initial content.
 
-* `false` - _(Default)_ - No action. Panel content will only be updated by calling [refresh](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) or [submit](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) methods.
-* `true` - Once the panel is created it will immediately call its [refresh](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) method.  
+* `false` - _(Default)_ - No action. Panel content will only be updated by calling ["refresh"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) or ["submit"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) methods.
+* `true` - Once the panel is created it will immediately call its ["refresh"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) method.  
 ##
 ```
 effect / data-effect
@@ -123,7 +123,7 @@ interrupt / data-interrupt
 `bool` - _(Optional)_ - Allow an AJAX request to be interrupted.
 
 * `false` - _(Default)_ - Once an AJAX request is sent to the endpoint server it cannot be interrupted.
-* `true` - Allows the interruption of an AJAX call. Once an AJAX request is interrupted it will display a refresh icon in the overlay that can be clicked to call a new [refresh](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) method. 
+* `true` - Allows the interruption of an AJAX call. Once an AJAX request is interrupted it will display a refresh icon in the overlay that can be clicked to call a new ["refresh"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) method. 
 ##
 ```
 view / data-view

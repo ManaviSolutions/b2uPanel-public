@@ -214,6 +214,14 @@ Interrupt an AJAX call initiated by the b2uPanel object via ["refresh"](https://
 ##
 
 # Events
+Suported events:
+|Event|Description|
+|:---:|:---|
+|`click.b2upanel`|Event triggered on b2uPanel `click` events if the `data-mode` or `options.mode` is set to `"click"`, regardless of `bind` status.|
+|`success.b2upanel`|Event triggered on b2uPanel AJAX success **AND** a _status\_code_ of 200 with valid _content_ returned from endpoint.|
+|`error.b2upanel`|Event triggered on b2uPanel AJAX error, _status\_code_ not equal to 200, or _content_ `undefined` returned from endpoint|
+|`complete.b2upanel`|Event triggered on **ALL** b2uPanel AJAX calls|
+##
 A `b2uPanel.Event` object is returned to the calling JavaScript with all b2uPanel events. This `Event` object will have the following definition:
 ```javascript
 b2uPanel.Event = {
@@ -242,25 +250,6 @@ b2uPanel.Event = {
         status_message: "success"                               // "success" or error message
     }
 }
-```
-
-##
-```
-click.b2upanel
-```
-##
-```
-error.b2upanel
-```
-##
-
-```
-success.b2upanel
-```
-##
-
-```
-complete.b2upanel
 ```
 
 

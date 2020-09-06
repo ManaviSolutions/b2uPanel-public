@@ -21,7 +21,7 @@ A b2uPanel is typically setup on a `<div>`, but theoretically it can be added to
 4. Call `b2upanel()` in the `$(document).ready()` function.
 
 ```HTML
-<div id="my_panel" class="b2upanel" data-plugin="/plugin_name" data-action="action_name" data-method="method_name" data-init="false" data-mode="none">
+<div id="my_panel" class="b2upanel" data-plugin="/plugin_name" data-action="action_name" data-method="method_name">
 </div>
 ```
 ```javascript

@@ -210,17 +210,17 @@ b2upanel('abort')
 ```
 Interrupt an AJAX call initiated by the b2uPanel object via ["refresh"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods) or ["submit"](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#methods).
 
-***@note -*** _This method will ignore the interrupt options parameter._
+***@note -*** _This method will ignore the data-interrupt and options.interrupt parameter._
 ##
 
 # Events
-The plugin suports a few events which redirect `$.ajax` the results to the application.
+The plugin suports a few events which redirect the `$.ajax` results to the application.
 |Event|Description|
 |:---:|:---|
-|`click.b2upanel`|Event triggered on b2uPanel `click` events if the `data-mode` or `options.mode` is set to `"click"`, regardless of `bind` status.|
-|`success.b2upanel`|Event triggered on b2uPanel AJAX success **AND** a _status\_code_ of 200 with valid _content_ returned from endpoint.|
-|`error.b2upanel`|Event triggered on b2uPanel AJAX error, _status\_code_ not equal to 200, or _content_ `undefined` returned from endpoint|
-|`complete.b2upanel`|Event triggered on **ALL** b2uPanel AJAX calls|
+|`click.b2upanel`|This event is triggered on b2uPanel `click` events if the `data-mode` or `options.mode` is set to `"click"`, regardless of `bind` status.|
+|`success.b2upanel`|This event is triggered on b2uPanel AJAX success **AND** a _status\_code_ of 200 with valid _content_ returned from endpoint.|
+|`error.b2upanel`|This event is triggered on b2uPanel AJAX error, _status\_code_ not equal to 200, or _content_ `undefined` returned from endpoint|
+|`complete.b2upanel`|This event is triggered on **ALL** b2uPanel AJAX calls|
 
 Example capturing a `b2uPanel.Event`:
 ```javascript
@@ -263,11 +263,11 @@ b2uPanel.Event = {
 
 @see [b2uFramework](https://github.com/bob2u/b2uFramework-public/blob/master/README.md#b2uframework) for more details.
 
-The b2uPanel was designed independent from any framework, and it was designed to support any RESTful framework. But for b2uFramework it has out-of-the-box integration prepared in the form of a b2uFramework _Action_. The `\B2uPanel\B2uPanelAction` class definition extends the `\B2U\Core\Action` to provide some additional functionality that will streamline the use of b2uPanels in any project utlizing the b2uFramework.
+The b2uPanel was designed independently from any framework, and it was designed to support any RESTful framework. But for b2uFramework, it has out-of-the-box integration prepared in the form of a b2uFramework _Action_. The `\B2uPanel\B2uPanelAction` class definition extends the `\B2U\Core\Action` to provide some additional functionality that will streamline the use of b2uPanels in any project utilizing the b2uFramework.
 
 ## Addint b2uPanel to b2uFramework
 1. Download a copy of the latest [b2uPanel-public](https://github.com/bob2u/b2uPanel-public), and copy the contents to a location within the website's directory.
-2. Modify ***index.php*** for the b2uFramework by adding the following to the `setup()` configuration under the global **Includes** section.
+2. Modify the main ***index.php*** for the application by adding the following to the `setup()` configuration under the global **Includes** section.
     ```PHP
 	\B2U\Core\Manager::instance()->setup([
 		"Includes" => [
@@ -276,7 +276,22 @@ The b2uPanel was designed independent from any framework, and it was designed to
 	...
 	]);
     ```
-3. Any _Action_ that are set as a `data-endpoint` of a b2uPanel should derive from `\B2uPanel\B2uPanelAction`.
+3. Any _Action_ that is set as a `data-endpoint` of a b2uPanel should derive from `\B2uPanel\B2uPanelAction`.
 4. `public function submit() {}` is a **required** _Method_ that must be defined in the _Action_ class. This function will receive the results of `b2upanel("submit", ...)` calls.
+
+## Utility Function
+b2uPanels expect precise responses to be returned when a call to an endpoint is made. For example, the result must be a `JSON` with the parameters `status_code` and `content` properly defined. Furthermore, POST request sent from b2uPanels have a unique structure that contains parameters that may not be conducive to every application's use-case (e.g., `_b2upanel_args` for arguments sent via AJAX). The following methods are provided to simplify sending and receiving data between b2uPanel and an application built on b2uFramework.
+
+```PHP
+public function buildResponse($content, $args = [], $code = 200, $options = [])
+```
+@param **$content** - `string` - Typically HTML content returned.
+
+@param **$args** - `Array` - Default `[]`, array of parameters to be sent back to JavaScript, and accessible through the `b2uPanel.Event`'s `response.args`.
+
+@param **$code** - `int` - Default 200, if a value besides 200 is provided the content will not be processed and a `error.b2upanel` event will be triggered.
+
+@param **$options** - `Array` - Default `[]`, array of b2uPanel `options` to be modified. Not all options can be modified dynamically.
+##
 
 [Top](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#b2upanel---a-jquery-plugin)

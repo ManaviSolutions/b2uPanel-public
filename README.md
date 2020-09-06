@@ -259,6 +259,24 @@ b2uPanel.Event = {
     }
 }
 ```
+# b2uFramework Integration
 
+@see [b2uFramework](https://github.com/bob2u/b2uFramework-public/blob/master/README.md#b2uframework) for more details.
+
+The b2uPanel was designed independent from any framework, and it was designed to support any RESTful framework. But for b2uFramework it has out-of-the-box integration prepared in the form of a b2uFramework _Action_. The `\B2uPanel\B2uPanelAction` class definition extends the `\B2U\Core\Action` to provide some additional functionality that will streamline the use of b2uPanels in any project utlizing the b2uFramework.
+
+# Addint b2uPanel to b2uFramework
+1. Download a copy of the latest [b2uPanel-public](https://github.com/bob2u/b2uPanel-public), and copy the contents to a location within the website's directory.
+2. Modify ***index.php*** for the b2uFramework by adding the following to the `setup()` configuration:
+    ```PHP
+    \B2U\Core\Manager::instance()->setup([
+		"Includes" => [
+			"./example/assets/plugins/b2uPanel/b2u.action.php"		// since we will be using b2uPanel, this is a required 
+																	// global include for the javascript plugin to work.
+		],
+        ...
+    ]);
+    ```
+3. 
 
 [Top](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#b2upanel---a-jquery-plugin)

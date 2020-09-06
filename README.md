@@ -217,7 +217,6 @@ Interrupt an AJAX call initiated by the b2uPanel object via ["refresh"](https://
 A `b2uPanel.Event` object is returned to the calling JavaScript with all b2uPanel events. This `Event` object will have the following definition:
 ```javascript
 b2uPanel.Event = {
-    system_error,                                           // provides details on plugin level errors
     post: {                                                 // arguments that were posted to the endpoint
         _b2upanel_args: {},                                     // parameters posted to the endpoint
         _b2upanel_endpoint: "endpoint_url[/method]",            // actual endpoint called
@@ -236,11 +235,11 @@ b2uPanel.Event = {
         }
     },               
     response: {                                             // result of the last AJAX call to endpoint
-        args: {},                                               // merge of arguments passed in and returned by endpoint
+        args: {},                                               // merged arguments passed in and returned by endpoint
         content: "...",                                         // content sent back by endpoint
-        options: [],                                            // modified b2uPanel options - endpoint can modify options
-        status_code: 200,                                       // 200 on success else 500 on all other cases
-        status_message: "success"                               // "success" or error message for all other cases
+        options: [],                                            // b2uPanel options to modify
+        status_code: 200,                                       // 200 on success else not on error
+        status_message: "success"                               // "success" or error message
     }
 }
 ```

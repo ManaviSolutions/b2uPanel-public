@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 ***@note -*** _Steps 2 & 3 can be a combination of setting HTML data-* tags on the b2uPanel element, or passing an **options.\*** `JavaScript Object` array with the configuration parameters. If both data-endpoint and options-endpoint are set, the value passed in via data-* takes priority._
 
-The only required parameter for initializing a b2uPanel element is the `data-endpoint` argument. Almost all other parameters use a default value or have no impact if not initialized. The default settings for the rest of the parameters are:
+The only required parameter for initializing a b2uPanel element is `endpoint / data-endpoint`. Almost all other parameters use a default value or have no impact if not initialized. The default settings for the rest of the parameters are:
 * `data-mode` = "none"
 * `data-init` = false
 * `data-effect` = "replace"
@@ -72,22 +72,29 @@ endpoint / data-endpoint
 ```
 method / data-method
 ```
-`string` - (Optional) The parameter is appended to the endpoint URL. Once this parameter is set the endpoint URL will be modified to `endpoint_url/method`, excpet on `"submit"` method calls where the endpoint will always be `endpoint_url/submit`. 
+`string` - (Optional) The parameter is appended to the endpoint URL. Once this parameter is set, the endpoint URL is modified to `endpoint_url/method`, except on `"submit"` method calls where the endpoint will always be `endpoint_url/submit`. 
 ##
 ```
 mode / data-mode
 ```
 `string` - (Optional) Set the interactive mode of the b2uPanel element.
     * `"none"` - Default - The b2uPanel has no interactive events.
-    * `"click"` - Clicking on the b2uPanel will fire a `click.b2upanel` event, and call `"refresh"` method if `options.bind` is `true`.
+    * `"click"` - Clicking on the b2uPanel will fire a `click.b2upanel` event, and call `"refresh"` method if `bind` is set to `true`.
 ##
 ```
 bind / data-bind
 ```
+`bool` - (Optional) Determine how the b2uPanel reacts to clicking events.
+    * `true` - Default - Clicking on a b2uPanel element with its `mode` set to `"click"` will also call its `"refresh"` method 
+    * `false` - Clicking on a b2uPanel element with its `mode` set to `"click"` will **NOT** also call its `"refresh"` method 
 ##
 ```
 overlay / data-overlay
 ```
+`bool` or `string` - (Optional) Modify how the panel overlay functions. The plugin's default behavior is that an overlay is displayed with a loading .gif when the plugin makes an AJAX call. This overlay will also prevent further access to the b2uPanel element, which avoids additional `click`s when `mode` is set to `click`.
+    * `true` - Default - Display the b2uPanel overlay on top of the HTML element that defined the b2uPanel.
+    * `false` - Do not display the overlay when an AJAX call is made. This will prevent the user from receiving visual feedback that an AJAX request has been issued, and the application is waiting for a response. It is the developer's responsibility to manage the user experience.
+    * `HTML element's id` - If a valid HTML element `id` is provided, then the overlay will be created over the target element with the given `id`. This is useful in scenarios where an application wants to prevent other areas of a page or the parent section of a page that contains the panel to be inaccessible to the end-user until the AJAX call has returned. 
 ##
 ```
 init / data-init
@@ -107,6 +114,10 @@ view / data-view
 ##
 ```
 dest / data-dest
+```
+##
+```
+data-height
 ```
 ##
 ```

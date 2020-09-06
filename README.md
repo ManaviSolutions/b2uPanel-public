@@ -31,7 +31,7 @@ $(document).ready(function() {
 ```
 ***@note -*** _The HTML element setup for b2uPanel is showing the absolute minimum required to set up a b2uPanel object._
 
-The only required parameter for initializing a b2uPanel element is the `data-plugin` argument. Almost all other parameters use a default value, or have no impact if not initialized. The default settings for a b2uPanel object parameters are:
+The only required parameter for initializing a b2uPanel element is the `data-plugin` argument. Almost all other parameters use a default value or have no impact if not initialized. The default settings for a b2uPanel object parameters are:
 * `data-mode` = "none"
 * `data-init` = false
 * `data-effect` = "replace"
@@ -40,8 +40,16 @@ The only required parameter for initializing a b2uPanel element is the `data-plu
 * `data-overlay` = true
 * `data-view` = false
 
+b2uPanel objects can also be initialized during the jQuery creation by passing in configuration arguments in an object to the constructor.
+```javascript
+$(document).ready(function() {
+    $('#my_panel').b2upanel({
+        plugin: "/plugin_name",
+        ...
+    });
+});
+```
 # Parameters
-
 
 # Methods
 ```javascript

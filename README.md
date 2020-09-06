@@ -50,6 +50,62 @@ $(document).ready(function() {
 });
 ```
 # Parameters
+```
+plugin / data-plugin
+```
+##
+```
+action / data-action
+```
+##
+```
+method / data-method
+```
+##
+```
+mode / data-mode
+```
+##
+```
+overlay / data-overlay
+```
+##
+```
+init / data-init
+```
+##
+```
+effect / data-effect
+```
+##
+```
+interrupt / data-interrupt
+```
+##
+```
+plugin / data-plugin
+```
+##
+```
+dest / data-dest
+```
+##
+```
+click
+```
+##
+```
+error
+```
+##
+```
+success
+```
+##
+```
+complete
+```
+##
 
 # Methods
 ```javascript
@@ -70,5 +126,25 @@ b2upanel('unbind')
 ##
 ```javascript
 b2upanel('abort')
+```
+##
+
+# Events
+```
+click.b2upanel
+```
+##
+```
+error.b2upanel
+```
+##
+
+```
+success.b2upanel
+```
+##
+
+```
+complete.b2upanel
 ```
 ##

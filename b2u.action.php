@@ -18,7 +18,7 @@ class B2uPanelAction extends \B2U\Core\Action {
 	// @param $options - allow override of the b2upanel configurations
 	//					 for example to turn on/off binding, the modes
 	//					 and effects, and other runtime options.
-	public function buildResponse($content, $code = 200, $args = [], $options = []) {
+	public function buildResponse($content, $args = [], $code = 200, $options = []) {
 		// populate the response with the default JSON used by b2u.panel.js
 		$this->Response->setHeader("Content-Type", "application/json")
 						->setContent(json_encode([

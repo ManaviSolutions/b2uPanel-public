@@ -20,11 +20,11 @@ class B2uPanelAction extends \B2U\Core\Action {
 	//					 and effects, and other runtime options.
 	public function buildResponse($content, $args = [], $code = 200, $options = []) {
 		// populate the response with the default JSON used by b2u.panel.js
-		$this->Response->setHeader("Content-Type", "application/json")
+		$this->Response()->setHeader("Content-Type", "application/json")
 						->setContent(json_encode([
 								"status_code" => $code,
 								"content" => $content,
-								"args" =>  ($this->Parameters["_b2upanel_args"] ?? []) + $args,
+								"args" =>  ($this->Parameters()["_b2upanel_args"] ?? []) + $args,
 								"options" => $options
 							]
 						));
@@ -34,12 +34,12 @@ class B2uPanelAction extends \B2U\Core\Action {
 	// page by calling this method, which will set the special "redirect"
 	// parameter that will be used by b2u.panel.js to perform a redirect.
 	public function redirect($url, $args = [], $options = []) {
-		$this->Response->setHeader("Content-Type", "application/json")
+		$this->Response()->setHeader("Content-Type", "application/json")
 						->setContent(json_encode([
 								"redirect" => true,
 								"status_code" => 200,
 								"content" => $url,
-								"args" =>  ($this->Parameters["_b2upanel_args"] ?? []) + $args,
+								"args" =>  ($this->Parameters()["_b2upanel_args"] ?? []) + $args,
 								"options" => $options
 							]
 						));
@@ -63,11 +63,11 @@ class B2uPanelAction extends \B2U\Core\Action {
 		// needed to be placed into _REQUEST parameters for b2uFramework to
 		// be able to call methods within an action when mapping signatures
 		// for parameter to functions.
-		if (isset($this->Parameters["_b2upanel_args"])) {
+		if (isset($this->Parameters()["_b2upanel_args"])) {
 			// without losing the existing data in _REQUEST append the args
-			return array_replace_recursive($this->Parameters, $this->Parameters["_b2upanel_args"]);
+			return array_replace_recursive($this->Parameters(), $this->Parameters()["_b2upanel_args"]);
 		}
-		return $this->Parameters;
+		return $this->Parameters();
 	}
 
 	public function submit() {

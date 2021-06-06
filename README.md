@@ -193,7 +193,9 @@ Calling this method on a b2uPanel object will initiate an AJAX call to the targe
 ```javascript
 b2upanel('submit' , jQuery element)
 ```
-This method should be used to pass ***form-style*** data to the endpoint. It will set and call a `submit` method by default. ***form-style*** data includes both HTML `<input>` and `<select>` elements encapsulated inside a `<form>` or a simple `<div>`. The second parameter should be a valid jQuery element using the form element (i.e., `$("#form_id")`).
+This method should be used to pass ***form-style*** data to the endpoint. It will set and call a `submit` method by default. ***form-style*** data includes both HTML `<input>`, `<select>`, and `<textarea>` elements encapsulated inside a `<form>` or a simple `<div>`. The second parameter should be a valid jQuery element using the form element (i.e., `$("#form_id")`).
+
+***@note -*** _Adding the class `.b2upanel-ignore` to an `<input>`, `<select>`, or `<textarea>` will ignore submitting their value to PHP._
 ##
 ```javascript
 b2upanel('bind')

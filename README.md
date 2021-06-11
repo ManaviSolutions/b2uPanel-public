@@ -178,7 +178,7 @@ complete
 ***@note -*** _Only available via options._
 ##
 ```
-args
+args / data-args
 ```
 `object` - _(Optional)_ - Two-way object array used to pass additional parameters to the endpoint and receive parameters from the endpoint. The `options.args` field can be used to provide initializing data to the target endpoint, and it can also be used to receive data from the endpoint and process them on the JavaScript front.  
 

@@ -1,4 +1,8 @@
 <?php
+/* Copyright (C) Manavi Solutions LLC - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ */
 namespace B2uPanel;
 
 class B2uPanelAction extends \B2U\Core\Action {
@@ -69,6 +73,106 @@ class B2uPanelAction extends \B2U\Core\Action {
 		}
 		return $this->Parameters();
 	}
+
+    // this function can be used by b2upanel derived panels to quickly add
+    // a utility pagination component to the panel that will automatically
+    // create the required buttons and tie-in the necessary submission and
+    // logic to submit pagination information to a panel
+    //
+    // @param $id - b2upanel id to receive the submit command
+    // @param $offset - the current offset to use for data display
+    // @param $limit - the limit of records in each pagination call
+    // @param $total - total number of records to calculate max num pages
+    // @param $perpage - maximum number of page buttons to display
+    // @param $args - optional parameters to be passed to panel via args
+    //
+    // @return the HTML component to be displayed in the panel
+    public function addPagination($id, $offset, $limit, $total, $perpage, $args = null) {
+
+        $html               = "";
+        if ( !is_numeric( $offset ) || !is_numeric( $limit ) ||
+             !is_numeric( $total ) || !is_numeric( $perpage ) ) {
+            return \AMMS\locale::get( "ERROR" );
+        }
+        $pageCount          = intval( ceil( $total / $limit ) );
+        if ( $pageCount > 1 ) {
+            $page           = intval( floor( $offset / $limit ) );
+            $start          = intval( floor( $page / $perpage ) * $perpage );
+            $off            = 1;
+            $disable        = "";
+            $paging         = "paging";
+            if ($start === 0) {
+                $off        = 0;
+                $paging     = "";
+                $disable    = "disabled";
+            }
+            $html           =  '<div id="' . $id . '-pagination" class="col-md-12 text-center">
+                                    <nav aria-label=""Page navigation">
+                	                    <ul class="pagination justify-content-center">
+                		                    <li class="page-item ' . $disable . '">
+                			                    <a class="' . $paging . ' page-link" href="javascript:void(0);" data-page="0" aria-label="First">
+                				                    <span aria-hidden="true">&laquo;</span>
+                				                    <span class="sr-only">First</span>
+                			                    </a>
+                		                    </li>
+                		                    <li class="page-item ' . $disable . '">
+                			                    <a class="' . $paging . ' page-link" href="javascript:void(0);" data-page="' . ($start - $off) . '" aria-label="Previous">
+                				                    <span aria-hidden="true">&lsaquo;</span>
+                				                    <span class="sr-only">Previous</span>
+                			                    </a>
+                		                    </li>';
+            $j              = 0;
+            $i              = $start;
+            for ( ; $i < $pageCount && $j < $perpage; ++$i, ++$j ) {
+                $active     = "";
+                if ( $i === $page ) {
+                    $active = "active";
+                }
+                $html      .= '             <li class="page-item ' . $active . '"><a  class="paging page-link" href="javascript:void(0);" data-page="' . $i . '">' . ( $i + 1 ) . '</a></li>';
+            }
+            $disable        = "";
+            $paging         = "paging";
+            if ( $j < $perpage || ( $j === $perpage && $perpage === $pageCount ) ) {
+                $off        = 0;
+                $paging     = "";
+                $disable    = "disabled";
+            }
+            $html          .= '		        <li class="page-item ' . $disable . '">
+                			                    <a class="' . $paging . ' page-link" href="javascript:void(0);" data-page="' . $i . '" aria-label="Next">
+                				                    <span aria-hidden="true">&rsaquo;</span>
+                				                    <span class="sr-only">Next</span>
+                			                    </a>
+                		                    </li>
+                		                    <li class="page-item ' . $disable . '">
+                			                    <a class="' . $paging . ' page-link" href="javascript:void(0);" data-page="' . ( $pageCount - 1 ) . '" aria-label="Last">
+                				                    <span aria-hidden="true">&raquo;</span>
+                				                    <span class="sr-only">Last</span>
+                			                    </a>
+                		                    </li>
+                	                    </ul>
+                                    </nav>
+                                    </div>
+                                    <input type="hidden" name="' . $id . '-page" id="' . $id . '-page" value="' . $page . '">
+                                    <input type="hidden" name="' . $id . '-limit" id="' . $id . '-limit" value="' . $page . '">
+                                    <input type="hidden" name="' . $id . '-offset" id="' . $id . '-offset" value="' . $page . '">
+                                    <script>
+                	                    $(document).ready(function() {
+                		                    $("#' . $id . '-pagination .page-link").on("click", function() {
+                			                    if (!$(this).parent().hasClass("disabled")){
+                				                    $("#' . $id . '-page").val($(this).data("page"));
+                				                    if ($("#' . $id . '-limit").val().length === 0) { $("#' . $id . '-limit").val(20); }
+                				                    $("#' . $id . '-offset").val($(this).data("page") * $("#' . $id . '-limit").val());';
+            if ( !is_null( $args ) ) {
+                $html .= '			                $("#' . $id . '").data("args",' . json_encode( $args ) . ');';
+            }
+            $html .= '				                $("#' . $id . '").b2upanel("submit", $(this).closest(".content-node"));
+                			                    }
+                		                    });
+                	                    });
+                                    </script>';
+        }
+        return $html;
+    }
 
 	public function submit() {
 		throw new \Exception("submit must be overloaded by derive class!");

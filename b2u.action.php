@@ -153,14 +153,13 @@ class B2uPanelAction extends \B2U\Core\Action {
                                     </nav>
                                     </div>
                                     <input type="hidden" name="' . $id . '-page" id="' . $id . '-page" value="' . $page . '">
-                                    <input type="hidden" name="' . $id . '-limit" id="' . $id . '-limit" value="' . $page . '">
-                                    <input type="hidden" name="' . $id . '-offset" id="' . $id . '-offset" value="' . $page . '">
+                                    <input type="hidden" name="' . $id . '-limit" id="' . $id . '-limit" value="' . $limit . '">
+                                    <input type="hidden" name="' . $id . '-offset" id="' . $id . '-offset" value="' . $offset . '">
                                     <script>
                 	                    $(document).ready(function() {
                 		                    $("#' . $id . '-pagination .page-link").on("click", function() {
                 			                    if (!$(this).parent().hasClass("disabled")){
                 				                    $("#' . $id . '-page").val($(this).data("page"));
-                				                    if ($("#' . $id . '-limit").val().length === 0) { $("#' . $id . '-limit").val(20); }
                 				                    $("#' . $id . '-offset").val($(this).data("page") * $("#' . $id . '-limit").val());';
             if ( !is_null( $args ) ) {
                 $html .= '			                $("#' . $id . '").data("args",' . json_encode( $args ) . ');';

@@ -92,7 +92,7 @@ class B2uPanelAction extends \B2U\Core\Action {
         $html               = "";
         if ( !is_numeric( $offset ) || !is_numeric( $limit ) ||
              !is_numeric( $total ) || !is_numeric( $perpage ) ) {
-            return \AMMS\locale::get( "ERROR" );
+            return \AMMS\locale::get( "LABEL_LOADING" );
         }
         $pageCount          = intval( ceil( $total / $limit ) );
         if ( $pageCount > 1 ) {
@@ -106,7 +106,7 @@ class B2uPanelAction extends \B2U\Core\Action {
                 $paging     = "";
                 $disable    = "disabled";
             }
-            $html           =  '<div id="' . $id . '-pagination" class="col-md-12 text-center">
+            $html           =  '<div id="' . $id . '-pagination" class="col-md-12 text-center b2upanel-mb-n50">
                                     <nav aria-label=""Page navigation">
                 	                    <ul class="pagination justify-content-center">
                 		                    <li class="page-item ' . $disable . '">
@@ -149,7 +149,24 @@ class B2uPanelAction extends \B2U\Core\Action {
                 				                    <span class="sr-only">Last</span>
                 			                    </a>
                 		                    </li>
+                                            <li class="b2upanel-desktop">
+                                                <input type="text" name="' . $id . '-page-num-d" class="form-control b2upanel-page-input" value="' . ($page + 1) . '">
+                                            </li>
                 	                    </ul>
+                                        <ul class="b2upanel-mobile b2upanel-mt-n20 b2upanel-mb-40">
+                                            <li>
+                                                <input type="text" name="' . $id . '-page-num-m" class="form-control b2upanel-page-input" value="' . ($page + 1) . '">
+                                            </li>
+                                        </ul>
+                                        <ul class="b2upanel-mt-n30 b2upanel-mb-40">
+                                            <li>
+                                                <select type="text" name="' . $id . '-page-limit" id="' . $id . '-page-limit" class="b2upanel-page-select">';
+            foreach([5,10,25,50,100,500,1000] as $option) {
+                $html .= '				            <option value="' . $option . '" ' . ($option == $limit ? 'selected' : '') . '>' . $option . '</option>';
+            }
+            $html .= '				            </select>
+                                            </li>
+                                        </ul>
                                     </nav>
                                     </div>
                                     <input type="hidden" name="' . $id . '-page" id="' . $id . '-page" value="' . $page . '">
@@ -157,8 +174,26 @@ class B2uPanelAction extends \B2U\Core\Action {
                                     <input type="hidden" name="' . $id . '-offset" id="' . $id . '-offset" value="' . $offset . '">
                                     <script>
                 	                    $(document).ready(function() {
+                                            $("#' . $id . '-page-limit").on("change", function(e) {
+                                                $("#' . $id . '-page").val(0);
+                                                $("#' . $id . '-limit").val(this.value);
+                                                $("#' . $id . '").b2upanel("submit", $(this).closest(".content-node"));
+                                            });
+                                            $("#' . $id . '-pagination .b2upanel-page-input").on("keypress", function(e) {
+                                                if (e.which === 13) {
+                                                    var pg = $(this).val() - 1;
+                                                    if (pg < 0) pg = 0;
+                                                    if (pg >= ' . $pageCount . ') pg = ' . $pageCount . ' - 1;
+                                                    $("#' . $id . '-page").val(pg);
+                                                    $("#' . $id . '-offset").val(pg * $("#' . $id . '-limit").val());';
+            if ( !is_null( $args ) ) {
+                $html .= '			                $("#' . $id . '").data("args",' . json_encode( $args ) . ');';
+            }
+            $html .= '				                $("#' . $id . '").b2upanel("submit", $(this).closest(".content-node"));
+                                                }
+                                            });
                 		                    $("#' . $id . '-pagination .page-link").on("click", function() {
-                			                    if (!$(this).parent().hasClass("disabled")){
+                			                    if (!$(this).parent().hasClass("disabled")) {
                 				                    $("#' . $id . '-page").val($(this).data("page"));
                 				                    $("#' . $id . '-offset").val($(this).data("page") * $("#' . $id . '-limit").val());';
             if ( !is_null( $args ) ) {

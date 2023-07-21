@@ -204,6 +204,10 @@ class B2uPanelAction extends \B2U\Core\Action {
                 		                    });
                 	                    });
                                     </script>';
+        } else {
+            $html .= '  <input type="hidden" name="' . $id . '-page" id="' . $id . '-page" value="0">
+                        <input type="hidden" name="' . $id . '-limit" id="' . $id . '-limit" value="' . $limit . '">
+                        <input type="hidden" name="' . $id . '-offset" id="' . $id . '-offset" value="' . $offset . '">';
         }
         return $html;
     }

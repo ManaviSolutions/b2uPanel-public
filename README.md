@@ -214,6 +214,11 @@ Interrupt an AJAX call initiated by the b2uPanel object via ["refresh"](https://
 
 ***@note -*** _This method will ignore the data-interrupt and options.interrupt parameter._
 ##
+```javascript
+b2upanel('setOpt', data)
+```
+Method is used to override the options parameters at runtime by providing new options via `data`.  This would be a great place to modify `data-args` via the `args` attribute.
+##
 
 # Events
 The plugin suports a few events which redirect the `$.ajax` results to the application.

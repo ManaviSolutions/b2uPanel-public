@@ -52,6 +52,7 @@ The only required parameter for initializing a b2uPanel element is `endpoint / d
 * `data-bind` = true
 * `data-overlay` = true
 * `data-view` = false
+* `data-content` = false
 * All other [Parameters](https://github.com/bob2u/b2uPanel-public/blob/master/README.md#parameters) are `undefined` by default.
 
 b2uPanel objects can also be initialized during the jQuery creation step by passing configuration arguments as an object to the constructor.
@@ -141,6 +142,13 @@ dest / data-dest
 `string` - _(Optional)_ - Set a different target HTML element to receive the results of the b2uPanel's AJAX call. 
 
 This can be useful when the results of a b2uPanel event should refresh an entire page or a different page section. It can be used to simulate buttons where the b2uPanel can act as the button element.
+##
+```
+content / data-content
+```
+`string` - _(Optional)_ - Look for given HTML element id within the results of the b2uPanel's AJAX call response. 
+
+Used in cases where the actual content to be used is actally within the HTML response returned from the AJAX call. For example, if the data-dest is set to the top element of the panel and the content returned from AJAX includes the data-dest, then to avoid a nested element with same id the data-content can be used to only extract the content portion within the data-dest and set it inside the content-node for the panel.
 ##
 ```
 data-height
